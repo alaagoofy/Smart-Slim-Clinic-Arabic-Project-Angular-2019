@@ -1,0 +1,251 @@
+
+    <!-- Preloader -->
+     <!--
+		<div class="preloader">
+			<div class="clear-loading loading-effect-2">
+				<span></span>
+			</div>
+    </div>
+    -->
+    <!-- /.preloader -->
+
+<div *ngIf="pageloading">
+    <div class="preloaderInner">
+        <div class="clear-loading loading-effect-2">
+            <span></span>
+        </div>
+</div>
+</div>
+
+
+    <section class="page-title style2 parallax parallax1 DR">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                        حاسبة مؤشر كتلة الجسم
+                    </div>
+                    <div class="text-heading" style="direction:rtl">
+                        يتم تقييم الوزن من خلال استخدام مؤشر كتلة الجسم الذي يفحص العلاقة بين طول ووزن الجسم.
+                    </div>
+                    <div class="wrap-box-search" style="direction:rtl">
+                        <form>
+                            <span>
+                                <input type="text" name="weight" ngModel #weight="ngModel"  placeholder="وزن الجسم بالكيلو جرام ( مثال : 72 )" >
+                            </span>
+                            <span class="location">
+                                <!--<span class="ti-"></span>-->
+                                <input type="text" name="height" ngModel #height="ngModel"  placeholder="الطول بالمتر ( مثال : 1.73 )" name="location">
+                            </span>
+                            <span class="categories">
+                                <span class="ti-angle-down"></span>
+                                <select name="categories">
+                                    <option value="">النوع</option>
+                                    <option value="">ذكر</option>
+                                    <option value="">أنثى</option>
+                                </select>
+                            </span>
+                            
+                            <ng-template #popContent>
+                           <div [ngClass]="mathClass"> 
+                                <i [ngClass]="iconClass"></i>    
+                            {{mathMsg}} </div> 
+                            </ng-template>
+                            <ng-template #popTitle>نتيجة حساب كتلة جسمك 
+                                    <b>{{finalResult | number:'2.1-2'}} </b></ng-template>
+                            <button type="button" 
+                            class="search-btn" (click)="bodyMathTool(weight.value,height.value)"
+                            [ngbPopover]="popContent" [popoverTitle]="popTitle">
+                            إحسب</button>
+                          
+                        </form><!-- /form -->
+                    </div><!-- /.wrap-box-search -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+        <div class="overlay"></div>
+    </section><!-- /.page-title -->
+
+    
+
+
+
+    <section class="flat-row flat-imagebox background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flat-row-title center">
+                        <h2>إعرف المزيد عن سمارت سليم</h2>
+                        <p>
+                            خدمات علاج السمنة والنحافة 
+                        </p>
+                    </div><!-- /.flat-row-title -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+            <div class="row" style="direction:rtl">
+               
+               
+                <div class="col-md-4" *ngFor="let service of Services | slice:1:4">
+                    <div class="imagebox">
+                        <div class="box-imagebox">
+                            <div class="box-header">
+                                <div class="box-image">
+                                    <img src="{{service.ImageURL}}">
+                                    <a [routerLink]="['/ar/ShowService/',service.id]" title="">شاهد المزيد</a>
+                                    <div class="overlay"></div>
+                                    
+                                </div>
+                            </div><!-- /.box-header -->
+                            <div class="box-content">
+                                <div class="box-title">
+                                    <a [routerLink]="['/ar/ShowService/',service.id]" title="{{ service.Title }}">
+                                        {{ service.Title }}
+                                    </a>
+                                </div>
+                                
+                                <div class="box-desc">
+                                    <a 
+                                    [routerLink]="['/ar/ShowService/',service.id]"
+                                    class="text-right" [innerHTML]="service.serviceBody | summry : 100"></a>
+
+
+                                </div>
+                            </div><!-- /.box-content -->
+                            
+                        </div><!-- /.box-imagebox -->
+                    </div><!-- /.imaegbox -->
+                </div><!-- /.col-md-4 -->
+               
+               
+               
+               
+               
+               
+               
+            
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-imagebox style2 -->
+
+    
+
+    <section class="flat-row flat-text-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-title center">
+                        <h2 style="direction:rtl">
+                            سنساعدك على أن تبدو أفضل ، وتشعر بشعور أفضل وتحقق أحلامك.
+                        </h2>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-text-title -->
+
+    <section class="flat-row flat-team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flat-row-title center">
+                        <h2>أطبائنا</h2>
+                        <p>
+                            تعرف على اطباء سمارت سليم
+                        </p>
+                    </div><!-- /.flat-row-title -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+
+
+
+
+                        <div class="team-member" *ngFor="let Doctor of Doctors">
+                            <div class="member-image">
+                                <img [src]="Doctor.ImageURL" alt="">
+                            </div>
+                            <div class="member-content">
+                                <h4 class="name"> <a routerLink="/ar/doctors">{{ Doctor.DrName }}</a> </h4>
+                                
+                            </div>
+                        </div>
+                
+
+
+
+                    </div><!-- /.owl-carousel -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-team -->
+
+    <section class="flat-row flat-main-blog style2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flat-row-title center">
+                        <h2>نصائح ومقالات</h2>
+                        <p>
+                            إقرأ المزيد للتعرف على كيفية الحفاظ على وزن مثالى
+                        </p>
+                    </div><!-- /.flat-row-title -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+          
+               
+                
+            <div class="row" style="direction:rtl">
+                    <div class="col-lg-3 col-sm-6" *ngFor="let Article of Articles | slice : 1:5">
+                            <article class="blog-post">
+                                <div class="featured-post">
+                                    <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">
+                                        <img src="{{Article.ImageURL}}" alt="">
+                                        <div class="overlay"></div>
+                                    </a>
+                                </div><!-- /.featured-post -->
+                                <div class="content-post">
+                                    <div class="entry-post">
+                                        <ul class="entry-meta">
+                                            <li class="topic">
+                                                <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">صحة</a>
+                                            </li>
+                                            <li class="date">
+                                                <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">{{Article.DateTime}}</a>
+                                            </li>
+                                        </ul>
+                                        
+                                        <h2 class="entry-title text-right">
+                                            <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">
+                                                    {{Article.Title}}
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <p [innerHTML]="Article.ArtileBody | summry : 100"></p>
+                                
+                                </div><!-- /.content-post -->
+                            </article><!-- /.blog-post -->
+                        </div><!-- /.col-lg-3 col-sm-6 -->
+                    </div><!-- /.row -->
+
+                
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-more">
+                        <a routerLink="/ar/ourArticles" title="">شاهد جميع المقالات</a>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-main-blog style2 -->
+
+
+
+    <div class="button-go-top">
+        <a href="#" title="" class="go-top">
+            <i class="fa fa-chevron-up"></i>
+        </a><!-- /.go-top -->
+    </div><!-- /.button-go-top -->
+    

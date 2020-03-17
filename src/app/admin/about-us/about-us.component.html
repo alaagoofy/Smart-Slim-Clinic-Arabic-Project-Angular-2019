@@ -1,0 +1,92 @@
+<section class="page-title parallax parallax1 DR">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                     تعديل من نحن
+                </div>
+                <ul class="breadcrumbs">
+                    <li>
+                        <a routerLink="/" title="">الرئيسية</a>
+                        <span class="arrow_left"></span>
+                    </li>
+                   
+                    <li>
+                        تعديل من نحن
+                    </li>
+                </ul>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <div class="overlay"></div>
+</section><!-- /.page-title -->
+
+<div *ngIf="loadData">
+    <div class="preloader">
+            <div class="clear-loading loading-effect-2">
+                <span></span>
+            </div>
+    </div>
+</div>
+
+<section class="flat-row flat-introduce" style="margin: 30px 0 20px 0;padding: 0 0 40px 0;">
+   
+    <div class="container">
+<div class="col-md-12 col-xs-12 mr-auto ml-auto text-right" style="direction: rtl;">
+<h3 class="text-center page-title-heading mb--25 underline">من نحن</h3>
+        
+
+    <div class="alert alert-success animated zoomIn" *ngIf="success">
+       <i class="fa fa-check"></i>     تم حفظ البيانات  بنجاح
+         </div>
+
+
+
+<div>
+<div class="col-xs-12">
+       
+
+
+        <form #AboutForm="ngForm" (ngSubmit)="save()" class="form-listing">
+
+            <div class="inner-box form style1 text-right" style="background: none;padding:20px;padding-right:10px ; ">
+            <div class="one-half text-right" style="width: 100% !important;float: none !important">
+                <div class="wrap-listing category">
+                    
+    <label for="AboutTitletxt">إختر القسم</label>
+                    <span class="ti-angle-down"></span>
+                    <select name="AboutSelect" #AboutSelect="ngModel" [(ngModel)]="selectedLevel" (change)="selected()" id="AboutTitletxt">
+                     
+                        <option *ngFor="let about of AboutUs" [ngValue]="about">{{ about.Title }}</option>
+                    </select>
+                </div><!-- /.wrap-listing -->
+        
+
+<div class="form-group">
+    
+        <ckeditor [editor]="Editor" 
+        name="AboutBody" (change)="onChange($event)" [(ngModel)]="EditorData"
+           style="width: 100%;"></ckeditor>
+        
+    </div>
+ 
+    <div>
+        <button [disabled]="AboutForm.invalid" class="btn btn-primary float-left">تحديث البيانات</button>
+    </div>
+
+<div class="clearfix"></div>
+
+</div>
+</div>
+
+</form>
+</div>
+
+</div>
+</div>
+
+
+
+   
+        </div>
+        </section>

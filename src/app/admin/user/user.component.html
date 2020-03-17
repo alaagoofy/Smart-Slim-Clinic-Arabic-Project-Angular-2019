@@ -1,0 +1,94 @@
+<section class="page-title parallax parallax1 DR">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    اضافة مستخدم
+                </div>
+                <ul class="breadcrumbs">
+                    <li>
+                        <a routerLink="/" title="">الرئيسية</a>
+                        <span class="arrow_left"></span>
+                    </li>
+
+                    <li>
+                        اضافة مستخدم
+                    </li>
+                </ul>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <div class="overlay"></div>
+</section><!-- /.page-title -->
+
+
+
+
+
+<section class="flat-row flat-introduce" style="margin: 30px 0 20px 0;padding: 0 0 40px 0;">
+    <h3 class="text-center page-title-heading mb--25">إضافة مستخدم</h3>
+    <div class="container">
+
+        <br>
+        <div class="col-lg-5 col-md-8 col-sm-8 col-xs-12 mr-auto ml-auto">
+
+
+
+            <div class="clearfix"></div>
+
+            <form style="direction: rtl" #UserInfo="ngForm" (ngSubmit)="addUser(UserInfo)">
+                <div class="col-md-12 col-xs-12">
+
+                        <div *ngIf="loading">
+                                <div class="preloader">
+                                        <div class="clear-loading loading-effect-2">
+                                            <span></span>
+                                        </div>
+                                </div>
+                            </div>
+
+
+                    <div *ngIf="txtEmail.touched && txtEmail.invalid" class="alert alert-danger text-right">
+                        <i class="fa fa-exclamation-triangle fa-1x"></i>
+                        البريد الإلكترونى غير صحيح
+                    </div>
+                    <div *ngIf="errorMessage" class="alert alert-danger text-right">
+                        <i class="fa fa-xclamation-triangle fa-1x"></i>
+                       {{errorMessage}}
+                    </div>
+                    <div *ngIf="successMessage" class="alert alert-success text-right">
+                        <i class="fa fa-check fa-1x"></i>
+                        تمت إضافة المستخدم بنجاح
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="txtEmail" class="text-right">البريد الالكترونى</label>
+                        <input name="txtEmail" ngModel #txtEmail="ngModel" required email type="text" id="txtEmail"
+                            class="form-control">
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="text-right" for="password">كلمة المرور</label>
+                        <input name="txtPassword" ngModel #txtPassword="ngModel" required type="password"
+                            id="txtPassword" class="form-control">
+                    </div>
+                </div>
+
+
+                <div>
+                    <button [disabled]="UserInfo.invalid" (click)="addUser(UserInfo)">إضافة</button>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,115 @@
+<section class="page-title parallax parallax1 DR">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    اضافة / تعديل المقالات
+                </div>
+                <ul class="breadcrumbs">
+                    <li>
+                        <a routerLink="/" title="">الرئيسية</a>
+                        <span class="arrow_left"></span>
+                    </li>
+                    <li>
+                        <a routerLink="/admin/articlas" title="">المقالات</a>
+                        <span class="arrow_left"></span>
+                    </li>
+                    <li>
+                        اضافة / تعديل المقالات
+                    </li>
+                </ul>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <div class="overlay"></div>
+</section><!-- /.page-title -->
+
+<div *ngIf="loadData">
+    <div class="preloader">
+        <div class="clear-loading loading-effect-2">
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<section class="flat-row flat-introduce" style="margin: 30px 0 20px 0;padding: 0 0 40px 0;">
+
+    <div class="container">
+        <div class="col-md-12 col-xs-12 mr-auto ml-auto text-right" style="direction: rtl;">
+            <h3 class="text-center page-title-heading mb--25 underline">أضف مقال</h3>
+
+
+            <div class="alert alert-success animated zoomIn" *ngIf="success">
+                <i class="fa fa-check"></i> تم حفظ المقال بنجاح
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+
+
+
+                    <form #ArticaleForm="ngForm" (ngSubmit)="save(ArticaleForm.value)">
+                        <div class="form-group">
+                            <label for=""> الصورة</label>
+
+
+                            <label class="file">
+           <input type="file" name="Image"
+           ngModel #Image="ngModel" required   id="file" accept='image/*'
+             (change)="handleFileInput($event.target.files)" aria-label="File browser example">
+            <span class="file-custom"></span>
+          </label> 
+                           
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">عنوان المقال</label>
+
+                            <input type="text" required name="Title" [(ngModel)]="Article.Title" #Title="ngModel"
+                                class="form-control animated">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label> المقال</label>
+                            <ckeditor [editor]="Editor" name="ArtileBody" [(ngModel)]="Article.ArtileBody"
+                                #ArtileBody="ngModel" (change)="onChange($event)" style="width: 100%;"></ckeditor>
+
+                        </div>
+
+                        <div>
+                            <button [disabled]="ArticaleForm.invalid" class="btn btn-primary float-left">أضف
+                                المقال</button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+                <div class="col-md-4 col-xs-12">
+
+
+
+                    <div class="card" *ngIf="imgURL || Article.ImageURL">
+                        
+                            <img [src]="imgURL || Article.ImageURL" class="card-img-top" alt="">
+                       
+
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ Title.value }}</h5>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</section>

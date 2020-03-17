@@ -1,0 +1,34 @@
+
+  <div class="row" style="direction:rtl">
+<div class="col-lg-4 col-sm-6" style="margin-bottom:40px" *ngFor="let Article of Articles">
+        <article class="blog-post">
+            <div class="featured-post">
+                <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">
+                    <img src="{{Article.ImageURL}}" alt="">
+                    <div class="overlay"></div>
+                </a>
+            </div><!-- /.featured-post -->
+            <div class="content-post">
+                <div class="entry-post">
+                    <ul class="entry-meta">
+                        <li class="topic">
+                            <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">صحة</a>
+                        </li>
+                        <li class="date">
+                            <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">{{Article.DateTime}}</a>
+                        </li>
+                    </ul>
+                    
+                    <h2 class="entry-title text-right">
+                        <a [routerLink]="['/ar/ShowArticle/',Article.id]" title="">
+                                {{Article.Title}}
+                        </a>
+                    </h2>
+                </div>
+                <p>
+               <a [routerLink]="['/ar/ShowArticle/',Article.id]">     إقرأ المزيد...... </a></p>
+            
+            </div><!-- /.content-post -->
+        </article><!-- /.blog-post -->
+    </div><!-- /.col-lg-3 col-sm-6 -->
+</div><!-- /.row -->

@@ -1,0 +1,84 @@
+<section class="page-title parallax parallax1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                       خدماتنا
+                    </div>
+                    <ul class="breadcrumbs">
+                        <li>
+                            <a routerLink="/" title="">الرئيسية</a>
+                             <span class="arrow_right"></span>
+                        </li>
+                        <li>
+                                خدماتنا
+                        </li>
+                    </ul>
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+        <div class="overlay"></div>
+    </section>
+
+
+
+
+   
+
+    <div *ngIf="loadDataa">
+            <div class="preloaderInner">
+                    <div class="clear-loading loading-effect-2">
+                        <span></span>
+                    </div>
+            </div>
+        </div>
+
+
+<section class="flat-row flat-main-blog">
+<div class="flat-row flat-main-blog">
+<div class="container">
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="flat-row-title center">
+                        <h2>إعرف المزيد عن سمارت سليم</h2>
+                        <p>
+                            خدمات علاج السمنة والنحافة 
+                        </p>
+                    </div><!-- /.flat-row-title -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+            
+    <div class="row" style="direction: rtl;">
+            <div class="col-lg-4 col-sm-6" style="margin-bottom: 40px;" *ngFor="let service of Getservices">
+                    <article class="blog-post">
+                        <div class="featured-post">
+                            <a [routerLink]="['/ar/ShowService/',service.id]" title="">
+                                <img src="{{service.ImageURL}}" alt="">
+                                <div class="overlay"></div>
+                            </a>
+                        </div><!-- /.featured-post -->
+                        <div class="content-post">
+                            <div class="entry-post">
+                                
+                                
+                                <h2 class="entry-title text-right">
+                                    <a [routerLink]="['/ar/ShowService/',service.id]" title="{{ service.Title }}">
+                                       {{ service.Title }} 
+                                    </a>
+                                </h2>
+                            </div>
+                           <a 
+                           [routerLink]="['/ar/ShowService/',service.id]"
+                           class="text-right" [innerHTML]="service.serviceBody | summry : 100"></a>
+                           <p>
+                                <a [routerLink]="['/ar/ShowService/',service.id]">     إقرأ المزيد...... </a></p>
+                        </div><!-- /.content-post -->
+                    </article><!-- /.blog-post -->
+                </div>
+    </div>
+</div>
+</div>
+
+</section>
+
+

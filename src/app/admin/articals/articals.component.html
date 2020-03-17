@@ -1,0 +1,147 @@
+<section class="page-title parallax parallax1 DR">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-title-heading">
+          المقالات
+        </div>
+        <ul class="breadcrumbs">
+          <li>
+            <a routerLink="/" title="">الرئيسية</a>
+            <span class="arrow_left"></span>
+          </li>
+
+          <li>
+            المقالات
+          </li>
+        </ul>
+      </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+  <div class="overlay"></div>
+</section><!-- /.page-title -->
+
+
+
+
+
+<div *ngIf="loadData">
+  <div class="preloader">
+    <div class="clear-loading loading-effect-2">
+      <span></span>
+    </div>
+  </div>
+</div>
+
+<section class="flat-row flat-introduce" style="margin: 30px 0 20px 0;padding: 0 0 40px 0;">
+  <h3 class="text-center page-title-heading mb--25">جميع المقالات</h3>
+  <div class="container">
+
+    <div class="alert alert-warning animated swing text-right floatAlert" *ngIf="deleteMsg">
+
+      تم حذف المقال بنجاح
+
+      <button type="button" class="close" style="height: 20px;margin-left:10px;" data-dismiss="alert"
+        aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="row" style="margin-bottom: 0 !important;">
+
+
+      <div class="col-lg-10 col-sm-8 col-xs-6">
+
+        <mat-form-field>
+
+          <input matInput style="width:100%;;" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+
+
+        </mat-form-field>
+      </div>
+      <div class="col-lg-2 col-sm-4 col-xs-6 text-right">
+        <a routerLink="/admin/addArticle" style="margin:0 0 -10px;" class="btn btn-primary">
+
+          إضافة مقال <i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+
+    <div class="mat-elevation-z8 text-right">
+
+
+
+
+      <table mat-table [dataSource]="dataSource" matSort style="direction: rtl;">
+
+
+           <!-- TITLE Column -->
+        <ng-container @fadeTestb matColumnDef="Title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> العنوان </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.Title}}
+          </td>
+        </ng-container>
+
+            <!-- IMAGE Column -->
+        <ng-container @fadeTestb matColumnDef="ImageURL">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> الصورة </th>
+          <td mat-cell *matCellDef="let row"> <img [src]="row.ImageURL" width="60"> </td>
+        </ng-container>
+
+        <!-- DATETIME Column -->
+        <ng-container @fadeTestb matColumnDef="DateTime">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> التاريخ </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.DateTime}}
+          </td>
+        </ng-container>
+
+
+        <!-- EDIT Column -->
+        <ng-container @fadeTestb matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> تعديل </th>
+          <td mat-cell *matCellDef="let row">
+            <a [routerLink]="['/admin/addArticle/',row.id]" placement="top" ngbTooltip="تعديل" style="font-size: 20px;"
+              class="btnEdit"><i class="fa fa-edit"></i> </a>
+          </td>
+        </ng-container>
+
+        <!-- DELETE Column -->
+        <ng-container @fadeTestb matColumnDef="Delete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> حذف </th>
+          <td mat-cell *matCellDef="let row">
+            <a (click)="openModal(template)" style="font-size: 20px" placement="top" ngbTooltip="حذف"
+              class="btnTrash"><i class="fa fa-trash"></i> </a>
+
+              <ng-template #template>
+                  <div class="modal-body text-center" style="padding:0 0 10px !important">
+                    <p style="margin:0 0 10px;border-bottom:1px solid #ccc;direction: rtl;padding:7px ;text-align:right">هل تريد حذف هذا المقال ؟ </p>
+
+                   
+                    
+                        <div>
+                            <button type="button" class="btn btn-default float-left" style="display: inline-block;margin:0 5px" (click)="decline()" >لا</button>
+                            <button type="button" class="btn btn-danger float-left" (click)="deleteArticle(row.id)" >نعم</button>
+
+                      </div>
+                      
+                      
+                  </div>
+                </ng-template>
+
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+
+  </div>
+
+</section>

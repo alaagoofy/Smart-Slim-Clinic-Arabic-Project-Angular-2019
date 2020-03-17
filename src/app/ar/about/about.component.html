@@ -1,0 +1,88 @@
+<section class="page-title parallax parallax1 DR">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    من نحن
+                </div>
+                <ul class="breadcrumbs DR">
+                    <li>
+                        <a roterLink="/" title="">الرئيسية</a>
+                         <span class="arrow_left"></span>
+                    </li>
+                    <li>
+                        من نحن
+                    </li>
+                </ul>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <div class="overlay"></div>
+</section>
+
+
+<div *ngIf="pageloading">
+    <div class="preloaderInner">
+        <div class="clear-loading loading-effect-2">
+            <span></span>
+        </div>
+</div>
+</div>
+
+
+
+<section class="flat-row flat-introduce DR" *ngIf="About && Mission && Vision">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="introduce-header">
+                    <p [innerHtml]="About.Body">
+                      
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-3">
+                        <div class="introduce-image">
+                            <img src="assets/images/page/application.png" alt="">
+                        </div>
+                    </div>
+
+            <div class="col-sm-9">
+                <div class="introduce">
+                    <div class="introduce-title DR text-right">
+                        <h3>{{ Mission.Title }}</h3>
+                        <span>1</span>
+                    </div>
+                    <div class="introduce-content DR text-right" [innerHtml]="Mission.Body">
+                      
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="introduce-image">
+                    <img src="assets/images/page/note.png" alt="">
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="introduce">
+                    <div class="introduce-title DR text-right">
+                        <h3>{{ Vision.Title }}</h3>
+                        <span>2</span>
+                    </div>
+                    <div class="introduce-content DR text-right" [innerHtml]="Vision.Body">
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</section>
